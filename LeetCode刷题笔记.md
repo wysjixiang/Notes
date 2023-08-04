@@ -10,6 +10,13 @@
    1. unordered_map<int, int> map;
    2. 当使用map[int ]索引时，就能索引到他单向指向的int值。
    3. 比如map[a] = b;  数据类型不局限于int，甚至可以是指针等等
+4. 堆
+   1. 小顶堆：每个结点的值都小于或等于其左右孩子结点的值，即顶节点最小
+   2. 大顶堆：顶节点最大
+   3. 使用优先队列来实现大小顶堆，priority_queue<Type, Container, Functional>
+   4. 如大顶堆实现： priority_queue<int, vector<int>,  less>，默认情况就是大顶堆
+   5. 注意优先队列的less和greater和一般的不同，less表示从大到小排序，优先输出最大的数，而如果是vector中使用less，则是从小到大排序的。这和底层实现的数据结构有关系！
+
 
 
 
