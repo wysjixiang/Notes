@@ -63,14 +63,14 @@
 
    需要注意的是，Linux 内核 2.6.x 版本引入了新的字符设备注册机制，即 `register_chrdev_region` 和 `alloc_chrdev_region` 函数，用于替代 `register_chrdev` 函数。这些函数提供了更灵活的主设备号分配方式，具体使用方法可以参考相关文档和示例代码。
 
-4. 注意platfrom_driver和platform_device的匹配过程，他们是如何匹配的？非常需要注意platform_driver中的.driver.name属性，尽管他的匹配优先级在of_match_table之后，但是他不能为NULL！因为driver_find函数会使用他来做strcmp！
+4. 注意platfrom_driver和platform_device的匹配过程，他们是如何匹配的？非常需要注意platform_driver中的.driver.name属性，~~尽管他的匹配优先级在of_match_table之后~~，因为首先platform_device.driver_override 和 platform_driver.driver.name会做一个比较，因此driver_find函数会使用他来做strcmp，所以他不能为NULL！！
 
 
 
 ### 异常与中断
 
 1. 硬件中断不可以被嵌套，软件中断可以。
-2. 中断可以分为中断上半部和下半部，上半部是硬件中断，下半部是软件中断，处理时会把中断开关打开，并且在下半部处理过程中，是处理所有的tasklet软件中断！但有一个问题是他是在中断程序中执行的，这个期间APP是无法相应的。
+2. 中断可以分为中断上半部和下半部，上半部是硬件中断，下半部是软件中断，处理时会把中断开关打开，并且在下半部处理过程中，是处理所有的tasklet软件中断！但有一个问题是他是在中断程序中执行的，这个期间APP是无法响应的。
 3. 当中断下半部耗时严重时候，可以创建内核线程来处理-work 内核线程 — work queue队列，就是工作队列
 4. 还可以改进，线程化的中断。对每一个中断都创建一个内核线程，这样可以分配给多个核来处理
 5. 中断控制器已经都由厂家的BSP工程师写好，用户只需要指定设备的中断即可
