@@ -7,9 +7,7 @@
 1. 首先需要在编译的时候添加 -g选项编译源文件才可以生成满足GDB要求的可执行文件
 2. 各种调试命令
 
-![image-20230724114839118](/home/jixiang/.config/Typora/typora-user-images/image-20230724114839118.png)
-
-
+![image-20230814124556502](/home/jixiang/.config/Typora/typora-user-images/image-20230814124556502.png)
 
 3. run和start命令都会让gdb开始执行，不同的是run会一直运行，直到断点或者结束；而start会在main函数处暂停
 
